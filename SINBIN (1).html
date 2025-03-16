@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINBIN</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        .ascii-art {
+            color: red;
+            font-family: monospace;
+            white-space: pre;
+        }
+    </style>
+</head>
+<body>
+    <div class="ascii-art">
+        ___   ___   _  _   ___   ___   _  _ <br>
+        / __| |_ _| | \| | | _ ) |_ _| | \| |<br>
+        \__ \  | |  | .` | | _ \  | |  | .` |<br>
+        |___/ |___| |_|\_| |___/ |___| |_|\_|<br>
+    </div>
+    <header>
+        <h1>SINBIN</h1>
+        <h2>OWNER: SINISTA KILLA</h2>
+        <h2>CO-OWNER: FROSTY_UNKNOWN</h2>
+        <h2>DISCORD SERVERS:</h2>
+        <h3><a href="https://discord.gg/DNYbtwGFwF">https://discord.gg/DNYbtwGFwF</a></h3>
+        <h3><a href="https://discord.gg/mMehzP3Th2">https://discord.gg/mMehzP3Th2</a></h3>
+        <h3><a href="https://discord.gg/nChpnrefDA">https://discord.gg/nChpnrefDA</a></h3>
+        <h3><a href="https://discord.gg/mxcTAMYsDd">https://discord.gg/mxcTAMYsDd</a></h3>
+    </header>
+    <main>
+        <form id="blogUploadForm">
+            <label for="blogTitle">PASTE Title:</label>
+            <input type="text" id="blogTitle" name="blogTitle" required>
+            <label for="blogContent">PASTE Content:</label>
+            <textarea id="blogContent" name="blogContent" required></textarea>
+            <button type="submit">Upload PASTE</button>
+        </form>
+        <div id="blogPosts"></div> <!-- Container to display uploaded posts -->
+    </main>
+    <footer>
+        <p>&copy; 2023 S I N I S T A K I L L A. All rights reserved.</p>
+    </footer>
+    <script>
+        const blogUploadForm = document.getElementById('blogUploadForm');
+        const blogPostsContainer = document.getElementById('blogPosts');
+        const posts = [];
+
+        blogUploadForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const title = document.getElementById('blogTitle').value;
+            const content = document.getElementById('blogContent').value;
+
+            // Create a new post object
+            const newPost = { title, content };
+            posts.push(newPost); // Store the post in the array
+
+            // Clear the form fields
+            blogUploadForm.reset();
+
+            // Display the posts
+            displayPosts();
+        });
+
+        function displayPosts() {
+            blogPostsContainer.innerHTML = ''; // Clear previous posts
+            posts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.innerHTML = `<h2>${post.title}</h2><p>${post.content}</p>`;
+                blogPostsContainer.appendChild(postElement);
+            });
+        }
+    </script>
+</body>
+</html>
